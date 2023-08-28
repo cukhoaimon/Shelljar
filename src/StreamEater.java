@@ -20,8 +20,9 @@ class StreamEater extends Thread {
         try {
             String line;
             while ((line = br.readLine()) != null) {
-                System.out.println(line);
+                // System.out.println(line);
                 builder.append(line);
+                builder.append("\n");
             }
 
         } catch (IOException e) {
