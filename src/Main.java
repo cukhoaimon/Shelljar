@@ -7,10 +7,7 @@ public class Main {
 
         (new ProcessRunner("./scripts/dump_memory.sh")).waitFor();
         emulator.waitFor();
-        // script for shutdown emulator
-        /*
-        ProcessRunner shutdown = new ProcessRunner("adb -s emulator-5554 emu kill");
-        shutdown.waitFor();
-        */
+
+
     }
 }
