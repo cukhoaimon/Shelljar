@@ -29,10 +29,9 @@ public class ProcessRunner {
 
     public int getExitValue() { return this.exitValue; }
 
-    public void showResult() throws InterruptedException {
+    public void run() throws InterruptedException {
         this.waitFor();
-        System.out.println("Output: \n" + this.getOutput());
-        System.out.println("Error: \n" + this.getError());
-        System.out.println("Exit code: \n" + this.getExitValue());
+        System.out.println("[INFO]" + "\n" + this.getOutput());
+        System.out.println("[ERROR]" + "\n" + this.getError());
     }
 }
