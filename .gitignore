@@ -4,4 +4,7 @@ out/
 !**/src/test/**/out/
 
 ### Malware file ###
-malware/
+src/resources/
+
+### Maven ###
+target/
