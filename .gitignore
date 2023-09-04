@@ -4,7 +4,9 @@ out/
 !**/src/test/**/out/
 
 ### Malware file ###
-src/resources/
+src/resources/dataset
+src/resources/malware
+src/resources/PKGS
 
 ### Maven ###
 target/
