@@ -12,16 +12,19 @@ public final class DatasetCreator {
             String scriptsPath,
             String outputPath
     ) throws IOException, InterruptedException {
-        File PKGS = new File(outputPath + "PKGS");
+        /*File PKGS = new File(outputPath + "PKGS");
         if (PKGS.createNewFile()) {
             System.out.println("File created: " + PKGS.getName());
         }
         else {
             System.out.println("File already exists.");
-        }
+        }*/
 
         File malwareSource = new File(malwarePath);
         List<String> malwares = Arrays.asList(Objects.requireNonNull(malwareSource.list()));
+
+        System.out.println("[INFO] Found " + malwares.toArray().length + " malwares file.");
+
         malwares.forEach(file -> {
             try {
                 // create AVD
@@ -60,6 +63,33 @@ public final class DatasetCreator {
                 throw new RuntimeException(e);
             }
         });
+    }
+
+    public static void convertDataset(String datasetPath, String outputPath) {
+        File dataset = new File(datasetPath);
+        File outPath = new File(outputPath);
+        if (!outPath.exists()) {
+            boolean mkdirs = outPath.mkdirs();
+            if (mkdirs) {
+                System.out.println("Output path is created.");
+            }
+        }
+
+        List<String> binaryFiles = Arrays.asList(Objects.requireNonNull(dataset.list()));
+        System.out.println("[INFO] Found " + binaryFiles.toArray().length + " file ready to convert.");
+
+        binaryFiles.forEach(file -> {
+            if (file.endsWith(".bin")) {
+                try {
+                    System.out.println("Converting " + file);
+                    PNGConverter.convert(datasetPath + file, outputPath + file + ".png");
+                    System.out.println("Done.");
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
+
     }
 
     private static List<String> getPackages(String fileName) {
